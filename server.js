@@ -5,20 +5,28 @@ const port = process.env.PORT || 3001;
 
 app.use(express.json());
 
-const ideas = [
-  { id: 1, text: "Build a habit tracker" },
-  { id: 2, text: "Build a reading list app" }
+const todos = [
+  { id: 1, task: "Set up the Express server", done: true },
+  { id: 2, task: "Finish the POST /todos route", done: false }
 ];
 
-app.get("/ideas", (request, response) => {
-  response.json(ideas);
+app.get("/todos", (request, response) => {
+  response.json(todos);
 });
 
-app.post("/ideas", (request, response) => {
-  const { text } = request.body;
+app.get("/todos/:id", (request, response) => {
+  const todoId = Number(request.params.id);
 
-  // If text is missing, return a 400 error.
-  // Otherwise create a new idea object and return it with status 201.
+  // Find the matching todo by id.
+  // Return it as JSON when found.
+  // Return a 404 JSON error when it does not exist.
+});
+
+app.post("/todos", (request, response) => {
+  const { task } = request.body;
+
+  // If task is missing, return a 400 error.
+  // Otherwise create a new todo object and return it with status 201.
 });
 
 app.listen(port, () => {

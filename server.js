@@ -17,8 +17,18 @@ app.get("/ideas", (request, response) => {
 app.post("/ideas", (request, response) => {
   const { text } = request.body;
 
-  // If text is missing, return a 400 error.
-  // Otherwise create a new idea object and return it with status 201.
+  if (!text) {
+    response.status(400).json({ error: "text is required" });
+    return;
+  }
+
+  const newIdea = {
+    id: ideas.length + 1,
+    text
+  };
+
+  ideas.push(newIdea);
+  response.status(201).json(newIdea);
 });
 
 app.listen(port, () => {

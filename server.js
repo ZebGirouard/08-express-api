@@ -5,30 +5,43 @@ const port = process.env.PORT || 3001;
 
 app.use(express.json());
 
-const ideas = [
-  { id: 1, text: "Build a habit tracker" },
-  { id: 2, text: "Build a reading list app" }
+const todos = [
+  { id: 1, task: "Set up the Express server", done: true },
+  { id: 2, task: "Finish the POST /todos route", done: false }
 ];
 
-app.get("/ideas", (request, response) => {
-  response.json(ideas);
+app.get("/todos", (request, response) => {
+  response.json(todos);
 });
 
-app.post("/ideas", (request, response) => {
-  const { text } = request.body;
+app.get("/todos/:id", (request, response) => {
+  const todoId = Number(request.params.id);
+  const todo = todos.find((entry) => entry.id === todoId);
 
-  if (!text) {
-    response.status(400).json({ error: "text is required" });
+  if (!todo) {
+    response.status(404).json({ error: "todo not found" });
     return;
   }
 
-  const newIdea = {
-    id: ideas.length + 1,
-    text
+  response.json(todo);
+});
+
+app.post("/todos", (request, response) => {
+  const { task } = request.body;
+
+  if (!task) {
+    response.status(400).json({ error: "task is required" });
+    return;
+  }
+
+  const newTodo = {
+    id: todos.length + 1,
+    task,
+    done: false
   };
 
-  ideas.push(newIdea);
-  response.status(201).json(newIdea);
+  todos.push(newTodo);
+  response.status(201).json(newTodo);
 });
 
 app.listen(port, () => {

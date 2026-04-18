@@ -16,18 +16,19 @@ app.get("/todos", (request, response) => {
 
 app.get("/todos/:id", (request, response) => {
   const todoId = Number(request.params.id);
+  const matchingTodo = todos.find((todo) => todo.id === todoId);
 
   // Where does this route receive the id value?
-  // What should the response look like when the todo exists?
-  // What should the response look like when it does not?
+  // What should happen first if `matchingTodo` is missing?
+  // What JSON should you send back when it exists?
 });
 
 app.post("/todos", (request, response) => {
   const { task } = request.body;
 
   // Where does the new task text come from?
-  // What should happen if it is missing?
-  // What fields should the new todo object include before you send it back?
+  // What should happen first if it is missing?
+  // Which fields should the new todo object include before you return it?
 });
 
 app.listen(port, () => {

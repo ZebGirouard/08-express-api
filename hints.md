@@ -1,1 +1,1 @@
-Focus on the JSON shape. A route is just input, logic, and output. Params like `:id` are just another input.
+Start with the inputs for each route. One route uses `request.params`, one route uses `request.body`, and both need a clear JSON response.

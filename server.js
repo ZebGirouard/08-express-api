@@ -17,16 +17,17 @@ app.get("/todos", (request, response) => {
 app.get("/todos/:id", (request, response) => {
   const todoId = Number(request.params.id);
 
-  // Find the matching todo by id.
-  // Return it as JSON when found.
-  // Return a 404 JSON error when it does not exist.
+  // Where does this route receive the id value?
+  // What should the response look like when the todo exists?
+  // What should the response look like when it does not?
 });
 
 app.post("/todos", (request, response) => {
   const { task } = request.body;
 
-  // If task is missing, return a 400 error.
-  // Otherwise create a new todo object and return it with status 201.
+  // Where does the new task text come from?
+  // What should happen if it is missing?
+  // What fields should the new todo object include before you send it back?
 });
 
 app.listen(port, () => {

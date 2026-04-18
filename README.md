@@ -6,7 +6,7 @@ Build a small TODO API with Express so you can inspect request and response flow
 ## Start Here
 1. Run `npm install`.
 2. Run `npm run dev`.
-3. Finish the missing route logic in `server.js`.
+3. Finish the missing route logic in `server.js` so the API can show one todo and create a new one.
 
 The data stays in memory so you can focus on routes, params, and JSON responses instead of infrastructure.
 
